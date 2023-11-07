@@ -6,23 +6,18 @@
     <title>MAIN</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Add Font Awesome CSS -->
     <style>
-        /* Reset some default styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
-        /* Basic styling */
         body {
             font-family: Arial, sans-serif;
             background-color: #e6f7ff; /* Light Blue-Green */
             background-image: url("images/viewpage.jpg");
-            padding-top: 80px; /* Add padding to prevent content from being hidden by the fixed header */
+            padding-top: 80px; 
             
         }
-
-        /* Header */
         header {
             position: fixed;
             top: 0;
@@ -77,7 +72,7 @@
         }
         /* Hero section */
         .hero {
-            background-image: url('viewpage.jpg'); /* Add your background image URL here */
+            background-image: url('viewpage.jpg'); 
             background-size: cover;
             background-position: center;
             color: #fff;
@@ -224,15 +219,12 @@
                 <li><a href="#">Features</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
-            <!-- Add a login link or form here -->
             <div class="header-login">
                 <a href="index.php">Login</a>
             </div>
-            <!-- End of login section -->
             <div class="header-icons">
                 <i class="fas fa-search"></i> <!-- Search Icon -->
                 <i class="fas fa-user-circle"></i> <!-- Profile Icon -->
-                <!-- Additional Icons -->
                 <i class="fas fa-envelope"></i> <!-- Email Icon -->
                 <i class="fas fa-phone"></i> <!-- Phone Icon -->
             </div>
@@ -244,12 +236,11 @@
         font-family: "Cooper Black", serif;
     }
 </style>
-
 <div class="hero-content">
     <h1>Welcome to our CargoMasters</h1>
     <br>
     <p>Enhance Customer Satisfaction with On-Time Deliveries and Transparency.</p>
-    <a href="dynamic register.php" class="btn">Get Started</a>
+    <a href="index.php" class="btn">Get Started</a>
 </div>
     </section>
     <section class="features">

@@ -1,46 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <meta charset="UTF-8">
-   
     <link rel="stylesheet" href=" formstyle.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
 </head>
 <body>
+    
 <?php
 require_once('connection.php');
-
 $successMessage = "";
 $errorMessage = "";
-
 if (isset($_POST['submit'])) {
+    
     $email = $_POST["email"];
     $password = $_POST["password"];
-    $userType = "customer"; // Set the user type to 'customer'
-
-    // Hash the password for security (replace 'your_hashing_algorithm' with your chosen password hashing method)
+    $userType = "customer";
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-
-    // Insert the user data into the Login table
     $loginSql = "INSERT INTO Login (email, password, user_type)
                  VALUES ('$email', '$hashedPassword', '$userType')";
-
     if ($conn->query($loginSql) === TRUE) {
         $successMessage = "New record created successfully in Login table";
     } else {
         $errorMessage = "Error: " . $loginSql . "<br>" . $conn->error;
     }
-
-    // Insert the other user details into the Customer table
     $fullName = $_POST["FullName"];
     $aadhar = $_POST["Aadhar"];
     $address = $_POST["address"];
     $phoneNumber = $_POST["PhoneNumber"];
-    $dateOfBirth = $_POST["DateOfBirth"];
+    $dateOfBirth = " ";
     $gender = $_POST["Gender"];
     $state = $_POST["state"];
-
     $customerSql = "INSERT INTO customer (email, full_name, aadhar, address, phone_number, date_of_birth, gender, state)
                     VALUES ('$email', '$fullName', '$aadhar', '$address', '$phoneNumber', '$dateOfBirth', '$gender', '$state')";
 
@@ -50,36 +42,31 @@ if (isset($_POST['submit'])) {
         $errorMessage .= "<br>Error: " . $customerSql . "<br>" . $conn->error;
     }
 }
-?>
+?>   
 
-<h1>Form Submission Result</h1>
-    
 <div class="registration-container">
-    <div class="brand-text">Logistics Management System</div>
-    <h2 style="font-family: 'YourDesiredFont', Cooper Black;">Registration</h2>
-    <form class="registration-form" action="#" method="post" onsubmit="return validateForm();">
-
-        <input class="form-input" type="email" name="email" id="email" placeholder="Email">
+    <div class="brand-text">  <h2 style="font-family: 'YourDesiredFont', Cooper Black;">CargoMasters</h2></div>
+    <h2>Registration</h2>
+    <form class="registration-form" action="#" method="post" name="myform" onsubmit="return validateform()">
+    <label for="email" style="text-align: left; display: block;">Email:</label>
+        <input class="form-input" type="email" name="email" id="email">
         <span style="color: red;" id="email-error"></span>
-
-        <input class="form-input" type="text" name="FullName" id="FullName" placeholder="Full Name">
-        <span style="color: red;" id="FullName-error"></span>
-
-        <input class="form-input" type="text" name="Aadhar" id="Aadhar" placeholder="Aadhar Number">
+        <label for="email" style="text-align: left; display: block;">Fullname:</label>
+        <input class="form-input" type="text" name="FullName" id="FullName"  >
+        <span style="color: red;" id="namemsg"></span>
+        <label for="email" style="text-align: left; display: block;">Aadhar Number:</label>
+        <input class="form-input" type="text" name="Aadhar" id="Aadhar" >
         <span style="color: red;" id="Aadhar-error"></span>
-
-        <input class="form-input" type="text" name="address" id="address" placeholder="Address">
+        <label for="email" style="text-align: left; display: block;">Address:</label>
+        <input class="form-input" type="text" name="address" id="address">
         <span style="color: red;" id="address-error"></span>
-
-        <input class="form-input" type="tel" name="PhoneNumber" id="PhoneNumber" placeholder="Phone Number">
+        <label for="email" style="text-align: left; display: block;">Phone Number:</label>
+        <input class="form-input" type="tel" name="PhoneNumber" id="PhoneNumber" >
         <span style="color: red;" id="PhoneNumber-error"></span>
-
-        <input class="form-input" type="date" name="DateOfBirth" id="DateOfBirth">
-        <span style="color: red;" id="DateOfBirth-error"></span>
-
-        <input class="form-input" type="password" name="password" id="password" placeholder="Password">
+        <label for="email" style="text-align: left; display: block;">Password:</label>
+        <input class="form-input" type="password" name="password" id="password" >
         <span style="color: red;" id="password-error"></span>
-
+        <label for="email" style="text-align: left; display: block;">Gender:</label>
         <select class="form-input" name="Gender" id="Gender">
             <option value="" disabled selected>Select Gender</option>
             <option value="male">Male</option>
@@ -87,9 +74,9 @@ if (isset($_POST['submit'])) {
             <option value="other">Other</option>
         </select>
         <span style="color: red;" id="Gender-error"></span>
-
         <div class="right-input">
-        <select class="form-input" name="state" id="state">
+        <label for="email" style="text-align: left; display: block;">State:</label>
+            <select class="form-input" name="state" id="state">
     <option value="" disabled selected>Select State</option>
     <option value="Andhra Pradesh">Andhra Pradesh</option>
     <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -120,99 +107,99 @@ if (isset($_POST['submit'])) {
     <option value="Uttarakhand">Uttarakhand</option>
     <option value="West Bengal">West Bengal</option>
 </select>
-
+            <br>
             <span style="color: red;" id="state-error"></span>
-
             <input name="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit" value="SIGN UP">
         </div>
+        <br>
+        <a href="index.php">Already have an Account?</a>
+        <br>
+        <br>
     </form>
-</div>
+</div><script>
+    function validateform() {
+        var isValid = true;
 
-<script>
-    // Function to validate the form
-    function validateForm() {
-        const email = document.getElementById("email").value;
-        const fullName = document.getElementById("FullName").value;
-        const aadhar = document.getElementById("Aadhar").value;
-        const address = document.getElementById("address").value;
-        const phoneNumber = document.getElementById("PhoneNumber").value;
-        const dateOfBirth = document.getElementById("DateOfBirth").value;
-        const gender = document.getElementById("Gender").value;
-        const state = document.getElementById("state").value;
-        const password = document.getElementById("password").value;
-
-        // Clear existing error messages
-        document.getElementById("email-error").textContent = "";
-        document.getElementById("FullName-error").textContent = "";
-        document.getElementById("Aadhar-error").textContent = "";
-        document.getElementById("address-error").textContent = "";
-        document.getElementById("PhoneNumber-error").textContent = "";
-        document.getElementById("DateOfBirth-error").textContent = "";
-        document.getElementById("Gender-error").textContent = "";
-        document.getElementById("state-error").textContent = "";
-
-        // Check if any of the required fields are empty
-        let isValid = true;
-        if (email === "") {
-            document.getElementById("email-error").textContent = "Email is required.";
-            isValid = false;
-        }
-
-        if (fullName === "") {
-            document.getElementById("FullName-error").textContent = "Full Name is required.";
-            isValid = false;
-        }
-
-        if (aadhar === "") {
-            document.getElementById("Aadhar-error").textContent = "Aadhar Number is required.";
+        // Email validation
+        var email = document.getElementById("email").value;
+        var emailError = document.getElementById("email-error");
+        if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+            emailError.textContent = "Please enter a valid email address";
             isValid = false;
         } else {
-            // Validate the Aadhar number format
-            const aadharPattern = /^\d{12}$/;
-            if (!aadharPattern.test(aadhar)) {
-                document.getElementById("Aadhar-error").textContent = "Invalid Aadhar number format. It should be 12 digits.";
-                isValid = false;
-            }
+            emailError.textContent = "";
         }
 
-        if (address === "") {
-            document.getElementById("address-error").textContent = "Address is required.";
-            isValid = false;
-        }
-
-        if (phoneNumber === "") {
-            document.getElementById("PhoneNumber-error").textContent = "Phone Number is required.";
+        // Full Name validation
+        var fullName = document.getElementById("FullName").value;
+        var nameError = document.getElementById("namemsg");
+        if (!fullName) {
+            nameError.textContent = "Please enter your full name";
             isValid = false;
         } else {
-            // Validate the phone number format
-            const phonePattern = /^\d{10}$/;
-            if (!phonePattern.test(phoneNumber)) {
-                document.getElementById("PhoneNumber-error").textContent = "Invalid phone number format. It should be 10 digits.";
-                isValid = false;
-            }
+            nameError.textContent = "";
         }
 
-        if (dateOfBirth === "") {
-            document.getElementById("DateOfBirth-error").textContent = "Date of Birth is required.";
+        // Aadhar Number validation
+        var aadhar = document.getElementById("Aadhar").value;
+        var aadharError = document.getElementById("Aadhar-error");
+        if (!aadhar || !/^\d{12}$/.test(aadhar)) {
+            aadharError.textContent = "Please enter a valid 12-digit Aadhar number";
             isValid = false;
+        } else {
+            aadharError.textContent = "";
         }
 
+        // Address validation
+        var address = document.getElementById("address").value;
+        var addressError = document.getElementById("address-error");
+        if (!address) {
+            addressError.textContent = "Please enter your address";
+            isValid = false;
+        } else {
+            addressError.textContent = "";
+        }
+
+        // Phone Number validation
+        var phoneNumber = document.getElementById("PhoneNumber").value;
+        var phoneNumberError = document.getElementById("PhoneNumber-error");
+        if (!phoneNumber || !/^\d{10}$/.test(phoneNumber)) {
+            phoneNumberError.textContent = "Please enter a valid 10-digit phone number";
+            isValid = false;
+        } else {
+            phoneNumberError.textContent = "";
+        }
+
+        // Password validation
+        var password = document.getElementById("password").value;
+        var passwordError = document.getElementById("password-error");
+        if (!password || password.length < 6) {
+            passwordError.textContent = "Please enter a valid password (at least 6 characters)";
+            isValid = false;
+        } else {
+            passwordError.textContent = "";
+        }
+
+        // Gender validation
+        var gender = document.getElementById("Gender").value;
+        var genderError = document.getElementById("Gender-error");
         if (gender === "") {
-            document.getElementById("Gender-error").textContent = "Gender is required.";
+            genderError.textContent = "Please select your gender";
             isValid = false;
+        } else {
+            genderError.textContent = "";
         }
 
+        // State validation
+        var state = document.getElementById("state").value;
+        var stateError = document.getElementById("state-error");
         if (state === "") {
-            document.getElementById("state-error").textContent = "State is required.";
+            stateError.textContent = "Please select your state";
             isValid = false;
+        } else {
+            stateError.textContent = "";
         }
 
-        if (password === "") {
-            document.getElementById("password-error").textContent = "Password is required.";
-            isValid = false;
-        }
-
-        // If all validation passes, the form will submit
         return isValid;
     }
 </script>

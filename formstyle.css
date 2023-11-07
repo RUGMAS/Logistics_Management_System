@@ -1,0 +1,139 @@
+
+        /* Global Styles */
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6f7ff; /* Light Blue-Green */
+            background-image: url("images/viewpage.jpg");
+            padding-top: 80px; /* Add padding to prevent content from being hidden by the fixed header */
+            animation: butterflyEffect 15s linear infinite;
+        }
+        header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #0099cc; /* Dark Blue */
+        color: #fff;
+        padding: 0.5rem 0; /* Reduced padding to reduce the height */
+        z-index: 70;
+    }
+    
+    
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    ul {
+        list-style: none;
+        display: flex;
+    }
+    
+    li {
+        margin-right: 1rem;
+    }
+    
+    a {
+        text-decoration: none;
+        color: #fff;
+    }
+    
+    /* Header Icons */
+    .header-icons {
+        display: flex;
+        align-items: center;
+    }
+    
+    .header-icons i {
+        margin-right: 1rem;
+    }
+    
+    /* Header Login Link */
+    .header-login a {
+        color: #fff;
+        text-decoration: none;
+        margin-right: 1rem;
+    }
+        h2 {
+            margin: 0;
+        }
+        /* Container Styles */
+        .registration-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Brand Text Styles */
+        .brand-text {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            color: #247BA0; /* Dark blue */
+            margin-bottom: 20px;
+        }
+
+        /* Form Styles */
+        .registration-form {
+            text-align: center;
+        }
+
+        /* Input Field Styles */
+        .form-input {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        /* Error Message Styles */
+        .error-message {
+            color: #FF0000; /* Red */
+        }
+
+        /* Login Link Styles */
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Role-Specific Section Styles */
+        .role-specific {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        /* Role-Specific Input Field Styles */
+        .role-specific input {
+            width: 100%;
+            padding: 5px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        /* Keyframes for the butterfly effect animation */
+        @keyframes butterflyEffect {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+    

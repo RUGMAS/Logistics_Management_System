@@ -1,151 +1,161 @@
 <?php
-// Start a PHP session
 session_start();
-
-// Check if the session variable 'email' is set
 if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="admincss.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <!-- Add your CSS stylesheets and external resources here -->
-    <style>
-        /* Reset some default styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Basic styling */
-        body {
+    <title>admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
             font-family: Arial, sans-serif;
             background-color: #e6f7ff; /* Light Blue-Green */
             background-image: url("images/viewpage.jpg");
             padding-top: 80px; /* Add padding to prevent content from being hidden by the fixed header */
             animation: butterflyEffect 15s linear infinite;
         }
+    /* Header */
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #0099cc; /* Dark Blue */
+        color: #fff;
+        padding: 1rem 0;
+        z-index: 100;
+        text-align: center; /* Center text in the header */
+    }
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        background-color: #70C1B3; /* Light green navigation background */
+    }
 
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background-color: #0099cc; /* Dark Blue */
-            color: #fff;
-            padding: 1rem 0;
-            z-index: 100;
-            text-align: center; /* Center text in the header */
-        }
+    .logo {
+        font-size: 1.5rem;
+    }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            background-color: #70C1B3; /* Light green navigation background */
-        }
+    ul {
+        list-style: none;
+        display: flex;
+    }
 
-        .logo {
-            font-size: 1.5rem;
-        }
+    li {
+        margin-right: 1rem;
+    }
 
-        ul {
-            list-style: none;
-            display: flex;
-        }
+    a {
+        text-decoration: none;
+        color: #fff;
+    }
 
-        li {
-            margin-right: 1rem;
-        }
+    /* Header Icons */
+    .header-icons {
+        display: flex;
+        align-items: center;
+    }
 
-        a {
-            text-decoration: none;
-            color: #fff;
-        }
+    .header-icons i {
+        margin-right: 1rem;
+    }
 
-        /* Header Icons */
-        .header-icons {
-            display: flex;
-            align-items: center;
-        }
+    /* Sidebar styles */
+    .sidebar {
+        width: 250px;
+        background-color: #333; /* Dark background color for the sidebar */
+        color: #fff;
+        padding: 1rem;
+        height: 100%; /* Full height */
+        position: fixed;
+        top: 0;
+        left: 0;
+        overflow-y: auto; 
+    }
+    .sidebar h2 {
+        margin-bottom: 1rem;
+    }
 
-        .header-icons i {
-            margin-right: 1rem;
-        }
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
 
-        /* Sidebar styles */
-        .sidebar {
-            width: 250px;
-            background-color: #333; /* Dark background color for the sidebar */
-            color: #fff;
-            padding: 1rem;
-            height: 100%; /* Full height */
-            position: fixed;
-            top: 0;
-            left: 0;
-            overflow-y: auto; /* Enable vertical scrolling if content exceeds the sidebar height */
-        }
+    .sidebar li {
+        margin-bottom: 1rem;
+    }
 
-        .sidebar h2 {
-            margin-bottom: 1rem;
-        }
+    .sidebar a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+    }
+    .content {
+        margin-left: 250px; /* Match the sidebar width to create space */
+        padding: 2rem;
+    }
+    /* Dashboard widget styles */
+    .widget {
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .widget h2 {
+        color: #333; /* Dark text color for widget headings */
+        margin-bottom: 1rem;
+    }
+    /* Footer styles */
+    footer {
+        background-color: #0099cc; /* Dark Blue */
+        color: #fff;
+        text-align: center;
+        padding: 1rem 0;
+    }
+    .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.widget {
+    width: 280px; /* Set the desired width */
+    height: 200px; /* Set the desired height */
+    padding: 20px; /* Adjust padding as needed */
+    margin: 10px; /* Adjust margin as needed */
+    background-color: #f2f2f2; /* Background color */
+    border: 1px solid #ccc; /* Border style */
+    text-align: center; /* Center text */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
+/* Hover effect for better user experience */
+.widget:hover {
+    background-color: #e0e0e0; /* Change background color on hover */
+}
+.icon-blue {
+    color: blue; /* Change icon color to blue */
+}
 
-        .sidebar li {
-            margin-bottom: 1rem;
-        }
-
-        .sidebar a {
-            text-decoration: none;
-            color: #fff;
-            font-weight: bold;
-        }
-
-        /* Content section styles */
-        .content {
-            margin-left: 250px; /* Match the sidebar width to create space */
-            padding: 2rem;
-        }
-
-        /* Dashboard widget styles */
-        .widget {
-            background-color: #fff;
-            border-radius: 5px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .widget h2 {
-            color: #333; /* Dark text color for widget headings */
-            margin-bottom: 1rem;
-        }
-
-        /* Footer styles */
-        footer {
-            background-color: #0099cc; /* Dark Blue */
-            color: #fff;
-            text-align: center;
-            padding: 1rem 0;
-        }
-
-        /* Keyframes for the butterfly effect animation */
-        @keyframes butterflyEffect {
+      /* Keyframes for the butterfly effect animation */
+      @keyframes butterflyEffect {
             0% {
                 background-position: 0% 50%;
             }
@@ -153,87 +163,94 @@ if (isset($_SESSION['email'])) {
                 background-position: 100% 50%;
             }
         }
-    </style>
+</style>
 </head>
 <body>
     <header>
-        <h1>Admin Dashboard</h1>
-        <!-- Add any header content or navigation here -->
-    </header>
-
-    <nav>
-        <!-- Add navigation links or menu here -->
+        <nav>
+            <div class="logo">Logistics Management System </div>
+            <nav>
         <ul>
-            
-        
-        <li><a href="#">..................</a></li>
-            <li><a href="#">Users</a></li>
-            <li><a href="#">Settings</a></li>
-            <!-- Add more navigation items as needed -->
-        </ul>
-    </nav>
-
+        <li><a href="#"></a></li>
+            <li><a href="admindashboard.php">Home</a></li>
+            <li><a href="#"> <h4><?php echo $email; ?>!</h4></a></li> 
+            <li><a href="#">Features</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="header-login">
+                <a href="index.php">Login</a>
+            </div>
+        </nav>
+    </header>
     <main>
     <section class="sidebar">
-    <!-- Sidebar content (e.g., navigation links, user profile) -->
     <h2>User Profile</h2>
-	<br>
-	<br>
-    
-<br>
-<ul>
-    <li><i class="fas fa-shopping-cart"></i> <a href="#">Orders</a></li>
+    <br><br><br>
+    <ul>
+    <li><i class="fas fa-file-invoice"></i> <a href="vieww.php">View Order Status</a></li>
 </ul>
 <br>
 <ul>
-    <li><i class="fas fa-user"></i> <a href="#">Profile</a></li>
+    <li><i class="fas fa-box"></i> <a href="packagedash.php">Package</a></li>
+</ul>
+
+<br>
+<ul>
+    <li><i class="fas fa-warehouse"></i> <a href="warehouse.php">Warehouse Management</a></li>
 </ul>
 <br>
 <ul>
-    <li><i class="fas fa-users"></i> <a href="#">Users</a></li> <!-- New menu item for Users -->
+    <li><i class="fas fa-truck"></i> <a href="shipmenttrack.php">Shipment Tracking</a></li>
 </ul>
 <br>
 <ul>
-    <li><i class="fas fa-box"></i> <a href="#">Packages</a></li> <!-- New menu item for Packages -->
+    <li><i class="fas fa-chart-bar"></i> <a href="reporting.php">Reporting and Analytics</a></li>
 </ul>
 <br>
 <ul>
-    <li><i class="fas fa-warehouse"></i> <a href="#">Warehouse</a></li> <!-- New menu item for Warehouse -->
+    <li><i class="fas fa-users-cog"></i> <a href="viewmain.php">User Management</a></li>
 </ul>
 <br>
 <ul>
-    <li><i class="fas fa-truck"></i> <a href="#">Shipments</a></li> <!-- New menu item for Shipments -->
+    <li><i class="fas fa-cog"></i> <a href="#">Settings</a></li>
 </ul>
 <br>
 <ul>
-    <li><i class="fas fa-money-bill"></i> <a href="#">Payment Refund</a></li> <!-- New menu item for Payment Refund -->
-</ul>
-<br>
-<ul>
-    <li><i class="fas fa-shield-alt"></i> <a href="#">Insurance</a></li> <!-- New menu item for Insurance -->
+    <li><i class="fas fa-bell"></i> <a href="notification.php">Notifications and Alerts</a></li>
 </ul>
 <br>
 <ul>
     <li><i class="fas fa-sign-out-alt"></i> <a href="index.php">Logout</a></li>
 </ul>
-
 </section>
-        <!-- Main content of your admin dashboard goes here -->
-        <div class="content">
-            <h1>Welcome, <?php echo $email; ?>!</h1>
-            <h2>Welcome to the Admin Dashboard!</h2>
-            <br>
-            <p>This is where you can manage your website's administration.</p>
-        </div>
+<br><br><br>
+<section class="content">
+    <br>
+    <br>
+    <div class="widget">
+        <a href="viewsubdeets.php">
+            <i class="fas fa-user fa-2x icon-blue"></i> <!-- Customer icon, 2x size -->
+            <h2>Customer</h2>
+        </a>
+    </div>
+
+    <div class="widget">
+        <a href="vieww.php">
+            <i class="fas fa-shipping-fast fa-2x icon-blue"></i> <!-- Shipper icon, 2x size -->
+            <h2>Shipper</h2>
+        </a>
+    </div>
+    <div class="widget">
+        <a href="admin_viewdelboy.php">
+            <i class="fas fa-truck fa-2x icon-blue"></i> <!-- Delivery Associates icon, 2x size -->
+            <h2>Delivery Associates</h2>
+        </a>
+    </div>
+</section>
     </main>
-    <br><br><br><br><br><br><br><br>r><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <footer>
-        <!-- Add footer content here -->
-        <p>&copy; 2023 Logistics Management System</p>
+        <p>&copy; 2023 CargoMasters</p>
     </footer>
-
-    <!-- Add your JavaScript files and scripts here -->
-    <script src="script.js"></script>
 </body>
 </html>

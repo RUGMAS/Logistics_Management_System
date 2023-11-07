@@ -1,31 +1,23 @@
 <?php
 // Start a PHP session
 session_start();
-
-// Check if the session variable 'username' is set
 if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Dashboard</title>
-    <!-- Include Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
-    /* Reset some default styles */
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
-
-    /* Basic styling */
     body {
             font-family: Arial, sans-serif;
             background-color: #e6f7ff; /* Light Blue-Green */
@@ -45,7 +37,6 @@ if (isset($_SESSION['email'])) {
         z-index: 100;
         text-align: center; /* Center text in the header */
     }
-
     nav {
         display: flex;
         justify-content: space-between;
@@ -94,7 +85,7 @@ if (isset($_SESSION['email'])) {
         position: fixed;
         top: 0;
         left: 0;
-        overflow-y: auto; /* Enable vertical scrolling if content exceeds the sidebar height */
+        overflow-y: auto; 
     }
     .sidebar h2 {
         margin-bottom: 1rem;
@@ -114,8 +105,6 @@ if (isset($_SESSION['email'])) {
         color: #fff;
         font-weight: bold;
     }
-
-    /* Content section styles */
     .content {
         margin-left: 250px; /* Match the sidebar width to create space */
         padding: 2rem;
@@ -152,39 +141,66 @@ if (isset($_SESSION['email'])) {
 </head>
 <body>
     <header>
-        <!-- Header content (e.g., logo, navigation) -->
-        <nav>
-            <div class="logo">Customer Dashboard</div>
-            <!-- You can add navigation links here if needed -->
+    <nav>
+            <div class="logo">Logistics Management System</div>
+            <ul>
+                <li><a href="landing page.php">Home</a></li>
+                <li><a href="#"> <h4><?php echo $email; ?>!</h4></a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="header-login">
+                <a href="index.php">Logout</a>
+            </div>
             <div class="header-icons">
-                <i class="fas fa-user-circle"></i> <!-- User Profile Icon -->
-                <i class="fas fa-cog"></i> <!-- Settings Icon -->
+                <i class="fas fa-search"></i> <!-- Search Icon -->
+                <a href="changepropass.php">
+  <i class="fas fa-user-circle"></i>
+</a>
+<!-- Profile Icon -->
+                <i class="fas fa-envelope"></i> <!-- Email Icon -->
             </div>
         </nav>
     </header>
     <main>
-        <section class="sidebar">
-    <!-- Sidebar content (e.g., navigation links, user profile) -->
+    <section class="sidebar">
     <h2>User Profile</h2>
-	<br>
-	<br>
+    <br>
+    <br>
+    <br>
     <ul>
-        
+    <li><i class="fas fa-map-marker"></i> <a href="youracc.php">Your Account</a></li>
+</ul>
+<br>
+<ul>
+        <li><i class="fas fa-cart-plus"></i> <a href="adcus.php">Place Order</a></li>
     </ul>
-    
+    <br>
     <ul>
-        <li><i class="fas fa-home"></i> <a href="#">Dashboard</a></li>
+        <li><i class="fas fa-shopping-cart"></i> <a href="order.php">Orders</a></li>
     </ul>
-	<br>
-	 <ul>
-        <li><i class="fas fa-shopping-cart"></i> <a href="#">Orders</a></li>
+    <br>
+    <ul>
+        <li><i class="fas fa-file-invoice"></i> <a href="#">View Order Status</a></li>
     </ul>
-	<br>
-	 <ul>
-        <li><i class="fas fa-user"></i> <a href="#">Profile</a></li>
+    <br>
+    <ul>
+        <li><i class="fas fa-comments"></i> <a href="#">Provide Feedback</a></li>
     </ul>
-	<br>
-	 <ul> 
+    <br>
+    <ul>
+        <li><i class="fas fa-money-check-alt"></i> <a href="#">Refund Requests</a></li>
+    </ul>
+    <br>
+    <ul>
+        <li><i class="fas fa-search"></i> <a href="#">Search Orders</a></li>
+    </ul>
+    <br>
+    <ul>
+        <li><i class="fas fa-map-marker"></i> <a href="#">Track Orders</a></li>
+    </ul>
+    <br>
+    <ul> 
         <li><i class="fas fa-sign-out-alt"></i> <a href="index.php">Logout</a></li>
     </ul>
 </section>
@@ -193,32 +209,23 @@ if (isset($_SESSION['email'])) {
            
             <br>
 			<br>
-            <!-- Dashboard widgets and information -->
             <div class="widget">
                 <h2>Account Information</h2>
-                <!-- Display customer account details here -->
                 <p>Account balance: $1000</p>
                 <p>Account type: Premium</p>
             </div>
-
             <div class="widget">
                 <h2>Recent Orders</h2>
-                <!-- Display a list of recent orders here -->
                 <ul>
                     <li>Order #12345 - $50</li>
                     <li>Order #12346 - $75</li>
                     <li>Order #12347 - $60</li>
                 </ul>
             </div>
-
             <div class="widget">
                 <h2>Notifications</h2>
-                <!-- Display customer notifications or updates here -->
                 <p>You have 2 new messages.</p>
             </div>
-
-            <!-- You can add more widgets and sections as needed -->
-
         </section>
     </main>
 <br>
@@ -228,8 +235,7 @@ if (isset($_SESSION['email'])) {
 <br>
 <br>
     <footer>
-        <!-- Footer content (e.g., contact information, links) -->
-        <p>&copy; 2023 Customer Dashboard</p>
+        <p>&copy; 2023 Logistics Management System</p>
     </footer>
 </body>
 </html>

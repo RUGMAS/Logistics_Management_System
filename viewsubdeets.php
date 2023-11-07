@@ -1,69 +1,45 @@
-<?php
-session_start();
-require_once('connection.php');
-$errorMessage = "";
-if (isset($_POST['login'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $adminemail="admin@gmail.com";
-    $adminpass="admin";
-    if(    $email==$adminemail &&  $password==  $adminpass)
-    {
-        $_SESSION['email'] = $email;
-        $_SESSION['username'] = "Admin";
-        header("Location: admindashboard.php");
-        exit();
-    }
-    $sql = "SELECT * FROM Login WHERE email = '$email'";
-    
-    
-    $result = $conn->query($sql);
-   
-    if ($result->num_rows === 1) {
-        $row = $result->fetch_assoc();
-        $hashedPassword = $row['password'];
-        $usertype = $row['user_type'];
-
-        $sql2 = "INSERT INTO `userlog` (`email`, `role`, `loginTime`, `loginDate`) VALUES ('$email', '$usertype', NOW(), NOW())";
-        $result2 = $conn->query($sql2);
-
-
-        if (password_verify($password, $hashedPassword)) {
-            // Password is correct
-            $_SESSION['email'] = $email; 
-            echo "loginsucess";
-            header("Location: dashboard.php");
-            exit();
-        } else {
-            // Password is incorrect
-            $errorMessage = "Incorrect password. Please try again.";
-        }
-    } else {
-        // User not found
-        $errorMessage = "User not found. Please try again.";
-    }
-}
-?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <title>Admin Dashboard</title>
     <style>
-        /* Global styles */
+        /* Global Styles */
         body {
             font-family: Arial, sans-serif;
             background-color: #e6f7ff; /* Light Blue-Green */
             background-image: url("images/viewpage.jpg");
-            padding-top: 80px; /* Add padding to prevent content from being hidden by the fixed header */
-            /* Add animation for the butterfly effect */
-            animation: butterflyEffect 15s linear infinite;
+            padding-top: 80px; 
+            
         }
 
-        /* Login container */
-        .login-container {
+        /* Centered Container Styles */
+        .container {
+            max-width: 1000px; /* Increased container width */
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #247BA0; /* Header background color */
+            color: #fff;
+        }
+     .login-container {
     max-width: 600px; /* Increase the maximum width to 600px */
     margin: 0 auto;
     background-color: #fff; /* White background */
@@ -95,9 +71,10 @@ if (isset($_POST['login'])) {
     right: 0;
     background-color: #0099cc; /* Dark Blue */
     color: #fff;
-    padding: 1rem 0;
-    z-index: 100;
+    padding: 0.5rem 0; /* Reduced padding to reduce the height */
+    z-index: 70;
 }
+
 
 nav {
     display: flex;
@@ -142,12 +119,9 @@ a {
     text-decoration: none;
     margin-right: 1rem;
 }
-
-        /* Login form */
-        .login-form {
-            text-align: left; /* Left-align form elements */
-        }
-
+    h2 {
+        margin: 0;
+    }
         /* Form input fields */
         .form-input {
             width: 100%;
@@ -196,6 +170,23 @@ a {
             text-decoration: none;
             color: #247BA0; /* Dark blue link color */
         }
+        /* Button Styles */
+.more-details-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #247BA0; /* Background color */
+    color: #fff; /* Text color */
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Button Hover Effect */
+.more-details-button:hover {
+    background-color: #70C1B3; /* Background color on hover */
+}
 
         /* Keyframes for the butterfly effect animation */
         @keyframes butterflyEffect {
@@ -206,6 +197,7 @@ a {
                 background-position: 100% 50%;
             }
         }
+        
     </style>
 </head>
 <body>
@@ -213,11 +205,12 @@ a {
         <nav>
             <div class="logo">Logistics Management System</div>
             <ul>
-                <li><a href="landing page.php">Features</a></li>
+                <li><a href="landing page.php">Home</a></li>
+                <li><a href="#">Features</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
             <div class="header-login">
-                <a href="index.php">Logout</a>
+                <a href="index.php">Login</a>
             </div>
             <div class="header-icons">
                 <i class="fas fa-search"></i> <!-- Search Icon -->
@@ -227,27 +220,66 @@ a {
             </div>
         </nav>
     </header>
-<br><br><br><br>
-    <div class="login-container">
-        <div class="brand-text"> <h1 style="font-family: 'YourDesiredFont', Cooper Black;">CargoMasters</h1></div>
-        <h2 style="font-family: 'YourDesiredFont', Cooper Black;">LOGIN</h2>
-        <form action="" method="post" class="login-form">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" class="form-input" required><br>
+<?php
+require_once('connection.php');
+$successMessage = "";
+$errorMessage = "";
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" class="form-input" required><br>
-            <br>
-            <div class="center-container">
-  <button type="submit" name="login" class="login-button">LOGIN</button>
-</div>
+if (isset($_POST['submit'])) {
+    $name = $_POST["Name"];
+    $email = $_POST["Email"];
+    $phoneNumber = $_POST["Phone"];
 
-        </form>
-        <p class="registration-link"><a href="customer_registation.php">Not A Member?</a></p>
-        <p class="registration-link"><a href="changepass.php">Forgot Password?</a>
-        <?php if (!empty($errorMessage)) { ?>
-            <p class="error-message"><?php echo $errorMessage; ?></p>
-        <?php } ?>
+    $insertSql = "INSERT INTO CustomerData (Name, Email, PhoneNumber, Address, ShipmentDate, DeliveryBoy, PackageCategory, HeightInCM, WeightInKG)
+                 VALUES ('$name', '$email', '$phoneNumber', '$address', '$shipmentDate', '$deliveryBoy', '$packageCategory', $height, $weight)";
+
+    if ($conn->query($insertSql) === TRUE) {
+        $successMessage = "New record created successfully in CustomerData table";
+    } else {
+        $errorMessage = "Error: " . $insertSql . "<br>" . $conn->error;
+    }
+}
+?>
+
+    <div class="container">
+        <h1>Customer Details</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Add customer data rows here -->
+                <?php
+                    $sql = "SELECT * FROM `customerdata` ";
+                    $result = $conn->query($sql);
+
+                    // Check if the query was successful
+                    if ($result === false) {
+                        die("Query failed: " . $conn->error);
+                    }
+                    while ($row = $result->fetch_assoc()) {
+                ?>
+                <tr>
+                    <td><?php echo $row["Name"]?></td>
+                    <td><?php echo $row["Email"]?></td>
+                    <td><?php echo $row["PhoneNumber"]?></td>
+                </tr>
+                <!-- Add more customer data rows as needed -->
+                <?Php
+                    }
+                ?>
+            </tbody>
+        </table>
     </div>
+    <br>
+    <br>
+    <div class="center-container">
+    <a href="view2.php" class="more-details-button">More Details</a>
+</div>
 </body>
 </html>
+

@@ -8,7 +8,7 @@ $dbName = "logdb";
 $conn = new mysqli($dbServername, $dbUsername, $dbPassword, $dbName);
 
 if ($conn) {
-  echo "Success";
+ 
 }
 
 if ($conn->connect_error) {
