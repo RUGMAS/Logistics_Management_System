@@ -172,31 +172,15 @@ if (isset($_SESSION['email'])) {
 </ul>
 <br>
 <ul>
-        <li><i class="fas fa-cart-plus"></i> <a href="adcus.php">Place Order</a></li>
+        <li><i class="fas fa-cart-plus"></i> <a href="placeorder.php">Place Order</a></li>
     </ul>
     <br>
     <ul>
-        <li><i class="fas fa-shopping-cart"></i> <a href="order.php">Orders</a></li>
-    </ul>
-    <br>
-    <ul>
-        <li><i class="fas fa-file-invoice"></i> <a href="#">View Order Status</a></li>
-    </ul>
-    <br>
-    <ul>
-        <li><i class="fas fa-comments"></i> <a href="feedback.php">Provide Feedback</a></li>
-    </ul>
-    <br>
-    <ul>
-        <li><i class="fas fa-money-check-alt"></i> <a href="refund.php">Refund Requests</a></li>
+        <li><i class="fas fa-file-invoice"></i> <a href="packageview.php">View Order Status</a></li>
     </ul>
     <br>
     <ul>
         <li><i class="fas fa-search"></i> <a href="#">Search Orders</a></li>
-    </ul>
-    <br>
-    <ul>
-        <li><i class="fas fa-map-marker"></i> <a href="#">Track Orders</a></li>
     </ul>
     <br>
     <ul> 
