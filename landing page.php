@@ -244,24 +244,39 @@
 </div>
     </section>
     <section class="features">
-        <h2>Key Features</h2>
-        <div class="feature">
-            <i class="fas fa-truck"></i>
-            <h3>Shipment Tracking</h3>
-            <p>Keep track of your packages in real-time, reducing stockouts and overstocking.</p>
-        </div>
-        <div class="feature">
-            <i class="fas fa-route"></i>
-            <h3>Route Optimization</h3>
-            <p>Optimize delivery routes for cost-effective and timely deliveries.</p>
-        </div>
-        <div class="feature">
-            <i class="fas fa-check-circle"></i>
-            <h3>Order Management</h3>
-            <p>Effortlessly manage customer orders from placement to delivery.</p>
-        </div>
-    </section>
-
+    <h2>Key Features</h2>
+    <div class="feature">
+        <i class="fas fa-truck"></i>
+        <h3>Shipment Tracking</h3>
+        <p>Keep track of your packages in real-time, reducing stockouts and overstocking.</p>
+    </div>
+    <div class="feature">
+        <i class="fas fa-route"></i>
+        <h3>Route Optimization</h3>
+        <p>Optimize delivery routes for cost-effective and timely deliveries.</p>
+    </div>
+    <div class="feature">
+        <i class="fas fa-check-circle"></i>
+        <h3>Order Management</h3>
+        <p>Effortlessly manage customer orders from placement to delivery.</p>
+    </div>
+    <div class="feature">
+        <i class="fas fa-calendar-alt"></i>
+        <h3>Schedule Management</h3>
+        <p>Create and manage delivery schedules to ensure timely shipments and customer satisfaction.</p>
+    </div>
+    <div class="feature">
+        <i class="fas fa-barcode"></i>
+        <h3>Barcode Scanning</h3>
+        <p>Utilize barcode scanning for efficient inventory management and order processing.</p>
+    </div>
+    <div class="feature">
+        <i class="fas fa-cogs"></i>
+        <h3>Customizable Settings</h3>
+        <p>Adjust and customize the system settings to meet the specific needs of your business.</p>
+    </div>
+    <!-- Add more features as needed -->
+</section>
     <footer>
         <p>&copy; 2023 Logistics Management System</p>
     </footer>

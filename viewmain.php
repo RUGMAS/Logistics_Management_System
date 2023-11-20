@@ -202,7 +202,7 @@ a {
                 <li><a href="#">Contact</a></li>
             </ul>
             <div class="header-login">
-                <a href="index.php">Login</a>
+                <a href="index.php">Logout</a>
             </div>
             <div class="header-icons">
                 <i class="fas fa-search"></i> <!-- Search Icon -->

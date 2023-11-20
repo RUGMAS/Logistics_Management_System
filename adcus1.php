@@ -200,34 +200,28 @@ a {
  <body class="bg-gray-100 p-5"> <br><br><br><br><br>
   <div class="max-w-md mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-lg">
   <h1 class="text-xl font-semibold mb-6">
-    Add Warehouse
+    Add Delivery Associates
    </h1>
    <form>
-    <div class="mb-4">
-     <label class="block text-sm font-semibold text-gray-700" for="city">
-      City
-     </label>
-     <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="city" name="city" placeholder="Enter city name" type="text">
-    </div>
     <div class="grid grid-cols-2 gap-4 mb-4">
      <div>
       <label class="block text-sm font-semibold text-gray-700" for="zipCode">
-       Zip Code
+      First Name
       </label>
-      <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="zipCode" name="zipCode" placeholder="Enter zip code" type="text">
+      <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id=" FirstName" name=" FirstName" placeholder="Enter your First Name" type="text">
      </div>
      <div>
       <label class="block text-sm font-semibold text-gray-700" for="postalCode">
-       Postal Code
+      Last Name 
       </label>
-      <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="postalCode" name="postalCode" placeholder="Enter postal code" type="text">
+      <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="LastName" name="LastName" placeholder="Enter your Last Name" type="text">
      </div>
     </div>
     <div class="mb-4">
      <label class="block text-sm font-semibold text-gray-700" for="street">
-      Street/Building
+      Select Warehouse
      </label>
-     <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="street" name="street" placeholder="Enter street/building" type="text">
+     <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="warehouse" name="warehouse" placeholder="Enter warehouse" type="text">
     </div>
     <div class="mb-4">
      <label class="block text-sm font-semibold text-gray-700" for="state">

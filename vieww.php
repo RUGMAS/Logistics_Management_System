@@ -17,7 +17,7 @@
             max-width: 1000px; /* Increased container width */
             margin: 0 auto;
             background-color: #fff;
-            padding: 20px;
+            padding: 60px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -203,25 +203,7 @@ a {
     </style>
 </head>
 <body>
-<header>
-        <nav>
-            <div class="logo">Logistics Management System</div>
-            <ul>
-                <li><a href="landing page.php">Home</a></li>
-                <li><a href="#">Features</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-            <div class="header-login">
-                <a href="index.php">Login</a>
-            </div>
-            <div class="header-icons">
-                <i class="fas fa-search"></i> <!-- Search Icon -->
-                <i class="fas fa-user-circle"></i> <!-- Profile Icon -->
-                <i class="fas fa-envelope"></i> <!-- Email Icon -->
-                <i class="fas fa-phone"></i> <!-- Phone Icon -->
-            </div>
-        </nav>
-    </header>
+
 <?php
 require_once('connection.php');
 $successMessage = "";
@@ -237,9 +219,10 @@ if (isset($_POST['submit'])) {
     $packageCategory = $_POST["PackageCategory"];
     $height = $_POST["Height"];
     $weight = $_POST["Weight"];
+    $packagePrice = $_POST["PackagePrice"];  // Changed from $Package Price to $packagePrice
 
-    $insertSql = "INSERT INTO CustomerData (Name, Email, PhoneNumber, Address, ShipmentDate, DeliveryBoy, PackageCategory, HeightInCM, WeightInKG)
-                 VALUES ('$name', '$email', '$phoneNumber', '$address', '$shipmentDate', '$deliveryBoy', '$packageCategory', $height, $weight)";
+    $insertSql = "INSERT INTO CustomerData (Name, Email, PhoneNumber, Address, ShipmentDate, DeliveryBoy, PackageCategory, HeightInCM, WeightInKG, PackagePrice)
+                 VALUES ('$name', '$email', '$phoneNumber', '$address', '$shipmentDate', '$deliveryBoy', '$packageCategory', $height, $weight, $packagePrice)";
 
     if ($conn->query($insertSql) === TRUE) {
         $successMessage = "New record created successfully in CustomerData table";
@@ -249,57 +232,70 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
-    <div class="container">
-        <h1>Customer Details</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone Number</th>
-                    <th>Address</th>
-                    <th>Shipment Date</th>
-                    <th>Delivery Boy</th>
-                    <th>Package Category</th>
-                    <th>Height (cm)</th>
-                    <th>Weight (kg)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Add customer data rows here -->
-                <?php
-                    $sql = "SELECT * FROM `customerdata` ";
-                    $result = $conn->query($sql);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Details</title>
+    <!-- Add your CSS styles here -->
+</head>
+<body>
 
-                    // Check if the query was successful
-                    if ($result === false) {
-                        die("Query failed: " . $conn->error);
-                    }
-                    while ($row = $result->fetch_assoc()) {
-                ?>
-                <tr>
-                    <td><?php echo $row["Name"]?></td>
-                    <td><?php echo $row["Email"]?></td>
-                    <td><?php echo $row["PhoneNumber"]?></td>
-                    <td><?php echo $row["Address"]?></td>
-                    <td><?php echo $row["ShipmentDate"]?></td>
-                    <td><?php echo $row["DeliveryBoy"]?></td>
-                    <td><?php echo $row["PackageCategory"]?></td>
-                    <td><?php echo $row["HeightInCM"]?></td>
-                    <td><?php echo $row["WeightInKG"]?></td>
-                </tr>
-                <!-- Add more customer data rows as needed -->
-                <?Php
-                    }
-                ?>
-            </tbody>
-        </table>
-    </div>
-    <br>
-    <br>
-    <div class="center-container">
-    <button class="more-details-button">More Details</button>
+<div class="container">
+    <h1>Customer Details</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Shipment Date</th>
+                <th>Delivery Boy</th>
+                <th>Package Category</th>
+                <th>Height (cm)</th>
+                <th>Weight (kg)</th>
+                <th>Package Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Add customer data rows here -->
+            <?php
+                $sql = "SELECT * FROM `customerdata` ";
+                $result = $conn->query($sql);
+
+                // Check if the query was successful
+                if ($result === false) {
+                    die("Query failed: " . $conn->error);
+                }
+                while ($row = $result->fetch_assoc()) {
+            ?>
+            <tr>
+                <td><?php echo $row["Name"]?></td>
+                <td><?php echo $row["Email"]?></td>
+                <td><?php echo $row["PhoneNumber"]?></td>
+                <td><?php echo $row["Address"]?></td>
+                <td><?php echo $row["ShipmentDate"]?></td>
+                <td><?php echo $row["DeliveryBoy"]?></td>
+                <td><?php echo $row["PackageCategory"]?></td>
+                <td><?php echo $row["HeightInCM"]?></td>
+                <td><?php echo $row["WeightInKG"]?></td>
+                <td><?php echo $row["PackagePrice"]?></td>  <!-- Changed from Package Price to PackagePrice -->
+            </tr>
+            <!-- Add more customer data rows as needed -->
+            <?Php
+                }
+            ?>
+        </tbody>
+    </table>
 </div>
+<br>
+<br>
+<div class="center-container">
+    <a href="index.php" class="more-details-button">Back</a>
+</div>
+
 </body>
 </html>
 

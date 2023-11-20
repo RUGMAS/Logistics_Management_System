@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (isset($_SESSION['email'])) {
+    $email = $_SESSION['email'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,7 +117,12 @@ i {
   margin-right: 5px;
   font-size: 16px;
 }
-
+footer {
+    background-color: #0099cc; /* Dark Blue */
+    color: #fff;
+    text-align: center;
+    padding: 0.1rem 0; /* Reduce the top and bottom padding to 0.5rem */
+}
  /* Keyframes for the butterfly effect animation */
  @keyframes butterflyEffect {
             0% {
@@ -124,9 +135,8 @@ i {
     </style>
 </head>
 <body>
-  <div class="dashboard">
-    <header>
-    <nav>
+<header>
+        <nav>
             <div class="logo">Logistics Management System</div>
             <ul>
                 <li><a href="landing page.php">Home</a></li>
@@ -134,16 +144,37 @@ i {
                 <li><a href="#">Contact</a></li>
             </ul>
             <div class="header-login">
-                <a href="index.php">Logout</a>
+                <a href="index.php">Login</a>
             </div>
             <div class="header-icons">
                 <i class="fas fa-search"></i> <!-- Search Icon -->
-                <a href="changepropass.php">
-  <i class="fas fa-user-circle"></i>
-</a>
+                <i class="fas fa-user-circle"></i> <!-- Profile Icon -->
                 <i class="fas fa-envelope"></i> <!-- Email Icon -->
+                <i class="fas fa-phone"></i> <!-- Phone Icon -->
             </div>
         </nav>
+    </header>
+  <div class="dashboard">
+    <header>
+    <nav>
+    <div class="logo">Logistics Management System</div>
+    <ul>
+        <li><a href="landing page.php">Home</a></li>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="header-login">
+        <a href="index.php">Logout</a>
+    </div>
+    <div class="header-icons">
+        <a href="changepropass.php">
+            <i class="fas fa-user-circle"></i>
+        </a>
+        <a href="#">
+            <h4><?php echo $email; ?>!</h4>
+        </a>
+    </div>
+</nav>
     </header>
     <table class="order-table">
       <thead>
@@ -194,5 +225,9 @@ i {
       </tbody>
     </table>
   </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<footer>
+        <p>&copy; 2023 Logistics Management System</p>
+    </footer>
 </body>
 </html>

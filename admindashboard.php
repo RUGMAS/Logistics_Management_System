@@ -178,7 +178,7 @@ if (isset($_SESSION['email'])) {
                 <li><a href="#">Contact</a></li>
             </ul>
             <div class="header-login">
-                <a href="index.php">Login</a>
+                <a href="index.php">Logout</a>
             </div>
         </nav>
     </header>
@@ -187,41 +187,32 @@ if (isset($_SESSION['email'])) {
     <h2>User Profile</h2>
     <br><br><br>
     <ul>
-    <li><i class="fas fa-file-invoice"></i> <a href="vieww.php">View Order Status</a></li>
-</ul>
-<br>
-<ul>
-    <li><i class="fas fa-box"></i> <a href="packagedash.php">Package</a></li>
-</ul>
-
-<br>
-<ul>
-    <li><i class="fas fa-warehouse"></i> <a href="warehouse.php">Warehouse Management</a></li>
-</ul>
-<br>
-<ul>
-    <li><i class="fas fa-truck"></i> <a href="shipmenttrack.php">Shipment Tracking</a></li>
-</ul>
-<br>
-<ul>
-    <li><i class="fas fa-chart-bar"></i> <a href="reporting.php">Reporting and Analytics</a></li>
-</ul>
-<br>
-<ul>
-    <li><i class="fas fa-users-cog"></i> <a href="viewmain.php">User Management</a></li>
-</ul>
-<br>
-<ul>
-    <li><i class="fas fa-cog"></i> <a href="#">Settings</a></li>
-</ul>
-<br>
-<ul>
-    <li><i class="fas fa-bell"></i> <a href="notification.php">Notifications and Alerts</a></li>
-</ul>
-<br>
-<ul>
-    <li><i class="fas fa-sign-out-alt"></i> <a href="index.php">Logout</a></li>
-</ul>
+        <li><i class="fas fa-tachometer-alt"></i> <a href="ddashboard.php">Dashboard</a></li>
+    </ul>
+    <br>
+    <ul>
+        <li><i class="fas fa-warehouse"></i> <a href="warehouse.php">Warehouse</a></li>
+    </ul>
+    <br>
+    <ul>
+    <li><i class="fas fa-box"></i> <a href="warehouseview.php">List of Orders</a></li>
+    </ul>
+    <br>
+    <ul>
+        <li><i class="fas fa-truck"></i> <a href="delas.php">Delivery Associates</a></li>
+    </ul>
+    <br>
+    <ul>
+        <li><i class="fas fa-box"></i> <a href="adcus1.php">Packages</a></li>
+    </ul>
+    <br>
+    <ul>
+        <li><i class="fas fa-map-marker"></i> <a href="track-packages.php">Track Packages</a></li>
+    </ul>
+    <br>
+    <ul>
+        <li><i class="fas fa-chart-bar"></i> <a href="reports.php">Reports</a></li>
+    </ul>
 </section>
 <br><br><br>
 <section class="content">

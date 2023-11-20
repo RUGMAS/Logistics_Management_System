@@ -157,7 +157,7 @@ a {
                 <li><a href="#">Contact</a></li>
             </ul>
             <div class="header-login">
-                <a href="index.php">Login</a>
+                <a href="index.php">Logout</a>
             </div>
             <div class="header-icons">
                 <i class="fas fa-search"></i> <!-- Search Icon -->
@@ -172,22 +172,22 @@ a {
     <div class="section-title"><h1>Package</h1></div>
     <div class="package">
                 <div class="package-title">Package 1</div>
-                <div class="package-description">Description of Package 2</div>
+               
                 <button class="button">Manage</button>
             </div>
             <div class="package">
                 <div class="package-title">Package 2</div>
-                <div class="package-description">Description of Package 2</div>
+                
                 <button class="button">Manage</button>
             </div>
             <div class="package">
                 <div class="package-title">Package 3</div>
-                <div class="package-description">Description of Package 2</div>
+                
                 <button class="button">Manage</button>
             </div>
 			<div class="package">
                 <div class="package-title">Package 4</div>
-                <div class="package-description">Description of Package 2</div>
+               
                 <button class="button">Manage</button>
             </div>
         </div>

@@ -151,6 +151,7 @@ footer {
     }
 </script>
 <body>
+    
 <div class="search-container right-align">
     <i class="fas fa-search fa-2x"></i>
     <input type="text" id="searchInput" class="cylinder-search" placeholder="Search by Name" onkeyup="searchDeliveryBoys()">

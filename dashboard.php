@@ -142,25 +142,24 @@ if (isset($_SESSION['email'])) {
 <body>
     <header>
     <nav>
-            <div class="logo">Logistics Management System</div>
-            <ul>
-                <li><a href="landing page.php">Home</a></li>
-                <li><a href="#"> <h4><?php echo $email; ?>!</h4></a></li>
-                <li><a href="#">Features</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-            <div class="header-login">
-                <a href="index.php">Logout</a>
-            </div>
-            <div class="header-icons">
-                <i class="fas fa-search"></i> <!-- Search Icon -->
-                <a href="changepropass.php">
-  <i class="fas fa-user-circle"></i>
-</a>
-<!-- Profile Icon -->
-                <i class="fas fa-envelope"></i> <!-- Email Icon -->
-            </div>
-        </nav>
+    <div class="logo">Logistics Management System</div>
+    <ul>
+        <li><a href="landing page.php">Home</a></li>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="header-login">
+        <a href="index.php">Logout</a>
+    </div>
+    <div class="header-icons">
+        <a href="changepropass.php">
+            <i class="fas fa-user-circle"></i>
+        </a>
+        <a href="#">
+            <h4><?php echo $email; ?>!</h4>
+        </a>
+    </div>
+</nav>
     </header>
     <main>
     <section class="sidebar">
@@ -185,11 +184,11 @@ if (isset($_SESSION['email'])) {
     </ul>
     <br>
     <ul>
-        <li><i class="fas fa-comments"></i> <a href="#">Provide Feedback</a></li>
+        <li><i class="fas fa-comments"></i> <a href="feedback.php">Provide Feedback</a></li>
     </ul>
     <br>
     <ul>
-        <li><i class="fas fa-money-check-alt"></i> <a href="#">Refund Requests</a></li>
+        <li><i class="fas fa-money-check-alt"></i> <a href="refund.php">Refund Requests</a></li>
     </ul>
     <br>
     <ul>
@@ -205,10 +204,6 @@ if (isset($_SESSION['email'])) {
     </ul>
 </section>
         <section class="content">
-        <h1>Welcome, <?php echo $email; ?>!</h1>
-           
-            <br>
-			<br>
             <div class="widget">
                 <h2>Account Information</h2>
                 <p>Account balance: $1000</p>
@@ -228,12 +223,7 @@ if (isset($_SESSION['email'])) {
             </div>
         </section>
     </main>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+    <br><br><br><br><br><br><br>
     <footer>
         <p>&copy; 2023 Logistics Management System</p>
     </footer>

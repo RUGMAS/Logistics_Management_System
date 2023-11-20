@@ -194,66 +194,93 @@ a {
             </div>
         </nav>
     </header>
-    <script src="https://cdn.tailwindcss.com">
-  </script>
- <script src="https://cdn.tailwindcss.com"></script></head>
- <body class="bg-gray-100 p-5"> <br><br><br><br><br>
-  <div class="max-w-md mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-lg">
-  <h1 class="text-xl font-semibold mb-6">
-    Add Warehouse
-   </h1>
-   <form>
-    <div class="mb-4">
-     <label class="block text-sm font-semibold text-gray-700" for="city">
-      City
-     </label>
-     <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="city" name="city" placeholder="Enter city name" type="text">
-    </div>
-    <div class="grid grid-cols-2 gap-4 mb-4">
-     <div>
-      <label class="block text-sm font-semibold text-gray-700" for="zipCode">
-       Zip Code
-      </label>
-      <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="zipCode" name="zipCode" placeholder="Enter zip code" type="text">
-     </div>
-     <div>
-      <label class="block text-sm font-semibold text-gray-700" for="postalCode">
-       Postal Code
-      </label>
-      <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="postalCode" name="postalCode" placeholder="Enter postal code" type="text">
-     </div>
-    </div>
-    <div class="mb-4">
-     <label class="block text-sm font-semibold text-gray-700" for="street">
-      Street/Building
-     </label>
-     <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="street" name="street" placeholder="Enter street/building" type="text">
-    </div>
-    <div class="mb-4">
-     <label class="block text-sm font-semibold text-gray-700" for="state">
-      State
-     </label>
-     <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="state" name="state" placeholder="Enter state" type="text">
-    </div>
-    <div class="mb-4">
-     <label class="block text-sm font-semibold text-gray-700" for="country">
-      Country
-     </label>
-     <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="country" name="country" placeholder="Enter country" type="text">
-    </div>
-    <div class="mb-4">
-     <label class="block text-sm font-semibold text-gray-700" for="contact">
-      Contact 
-     </label>
-     <input class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="contact" name="contact" placeholder="Enter contact number" type="tel">
-    </div>
-    <div class="flex justify-end space-x-4">
-     <button class="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700" type="submit">
-      Save
-     </button>
-    </div>
-   </form>
-  </div>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
 
+<body class="bg-gray-100">
+  <div class="container mx-auto p-6s"> <!-- Main container -->
+    <div class="container mx-auto mt-4">
+      <div class="flex justify-between items-center">
+        <h1 class="text-xl font-semibold">
+          <i class="fas fa-list-alt mr-2"></i> Branch List
+        </h1>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition">
+          <i class="fas fa-plus"></i> Add New
+        </button>
+    </div>
+    <div class="mt-4">
+      <div class="flex justify-between items-center mb-2">
+        <label>
+          Show
+          <select class="border border-gray-300 rounded-md p-1">
+            <option selected="" value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+          </select>
+          entries
+        </label>
+        <input class="border-gray-300 focus:border-blue-500 focus:ring-0 rounded-md shadow-sm p-2" placeholder="Search:" type="text">
+      </div>
+      <div class="overflow-x-auto scrollbar-hide">
+        <table class="min-w-full bg-white shadow rounded-lg">
+          <table class="min-w-full bg-white shadow rounded-lg">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="py-2 px-4 text-left">Sl.No</th>
+              <th class="py-2 px-4 text-left">Package Code</th>
+              <th class="py-2 px-4 text-left">Street/Building</th>
+              <th class="py-2 px-4 text-left">City/State/Zip</th>
+              <th class="py-2 px-4 text-left">Country</th>
+              <th class="py-2 px-4 text-left">Contact</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <!-- Sample row data, adjust as needed -->
+              <td class="border-t px-4 py-2">1</td>
+              <td class="border-t px-4 py-2">7vNVe5fKSkAuOtG</td>
+              <td class="border-t px-4 py-2">-</td>
+              <td class="border-t px-4 py-2">Zsdrftghjbmn Nghf, Kerala, 5467890</td>
+              <td class="border-t px-4 py-2">India</td>
+              <td class="border-t px-4 py-2">23456789</td>
+              
+            </tr>
+            <tr>
+              <!-- Sample row data, adjust as needed -->
+              <td class="border-t px-4 py-2">1</td>
+              <td class="border-t px-4 py-2">7vNVe5fKSkAuOtG</td>
+              <td class="border-t px-4 py-2">-</td>
+              <td class="border-t px-4 py-2">Zsdrftghjbmn Nghf, Kerala, 5467890</td>
+              <td class="border-t px-4 py-2">India</td>
+              <td class="border-t px-4 py-2">23456789</td>
+              
+            </tr>
+            <tr>
+              <!-- Sample row data, adjust as needed -->
+              <td class="border-t px-4 py-2">1</td>
+              <td class="border-t px-4 py-2">7vNVe5fKSkAuOtG</td>
+              <td class="border-t px-4 py-2">-</td>
+              <td class="border-t px-4 py-2">Zsdrftghjbmn Nghf, Kerala, 5467890</td>
+              <td class="border-t px-4 py-2">India</td>
+              <td class="border-t px-4 py-2">23456789</td>
+              
+            </tr>
+			
+            <!-- Additional rows go here -->
+          </tbody>
+        </table>
+        </table>
+      </div>
+      <div class="mt-4 flex justify-between items-center">
+        <div>
+          <button class="bg-gray-200 text-gray-800 px-3 py-1 rounded-md mr-1">Previous</button>
+          <span class="px-3 py-1">1</span>
+          <button class="bg-gray-200 text-gray-800 px-3 py-1 rounded-md ml-1">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
 </body>
 </html>

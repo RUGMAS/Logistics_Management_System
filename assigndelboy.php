@@ -86,8 +86,6 @@
 <?php
 include('connection.php'); // Include your database connection code
 
-$errors = array(); // Create an array to store validation errors
-
 if (isset($_POST['submit'])) {
     // Define variables to store form data
     $full_name = $license_number = $location = "";
@@ -95,47 +93,29 @@ if (isset($_POST['submit'])) {
     // Validate and retrieve data from the form
     if (isset($_POST['full_name'])) {
         $full_name = $_POST['full_name'];
-        if (empty($full_name)) {
-            $errors[] = "Full Name is required.";
-        }
     }
-
     if (isset($_POST['license_number'])) {
         $license_number = $_POST['license_number'];
-        if (empty($license_number)) {
-            $errors[] = "License Number is required.";
-        }
     }
-
     if (isset($_POST['location'])) {
         $location = $_POST['location'];
-        if (empty($location)) {
-            $errors[] = "Location is required.";
-        }
     }
 
-    // If there are no validation errors, insert data into the database
-    if (empty($errors)) {
-        $sql = "INSERT INTO delivery_boy (full_name, license_number, location) VALUES (?, ?, ?)";
+    // Perform any additional data validation if needed
 
-        if ($stmt = $conn->prepare($sql)) {
-            $stmt->bind_param("sss", $full_name, $license_number, $location);
+    // Insert data into the "delivery_boy" table
+    $sql = "INSERT INTO delivery_boy (full_name, license_number, location) VALUES (?, ?, ?)";
 
-            if ($stmt->execute()) {
-                echo "Delivery boy added successfully.";
-            } else {
-                echo "Error adding delivery boy: " . $stmt->error;
-            }
+    if ($stmt = $conn->prepare($sql)) {
+        $stmt->bind_param("sss", $full_name, $license_number, $location);
 
-            $stmt->close();
+        if ($stmt->execute()) {
+            echo "Delivery boy added successfully.";
+        } else {
+            echo "Error adding delivery boy: " . $stmt->error;
         }
-    } else {
-        // Display validation errors as JavaScript alerts
-        echo "<script>";
-        foreach ($errors as $error) {
-            echo "alert('$error');";
-        }
-        echo "</script>";
+
+        $stmt->close();
     }
 }
 
@@ -143,18 +123,16 @@ if (isset($_POST['submit'])) {
 $conn->close();
 ?>
 
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>Add Delivery Boy</title>
 </head>
 <body>
-
 <div class="container">
         <h1>Add Delivery Boy</h1>
         
-        <form method="post"  onsubmit="return validateform()" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
             <div class="form-group">
                 <label for="full_name">Full Name:</label>
                 <input type="text" name="full_name">
@@ -166,40 +144,9 @@ $conn->close();
             </div>
             <br>
             <div class="form-group">
-    <label for="state">State:</label>
-    <select name="state" style="width: 300px;">
-    
-        <option value="" selected disabled>Select a state</option>
-        <option value="Andhra Pradesh">Andhra Pradesh</option>
-        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-        <option value="Assam">Assam</option>
-        <option value="Bihar">Bihar</option>
-        <option value="Chhattisgarh">Chhattisgarh</option>
-        <option value="Goa">Goa</option>
-        <option value="Gujarat">Gujarat</option>
-        <option value="Haryana">Haryana</option>
-        <option value="Himachal Pradesh">Himachal Pradesh</option>
-        <option value="Jharkhand">Jharkhand</option>
-        <option value="Karnataka">Karnataka</option>
-        <option value="Kerala">Kerala</option>
-        <option value="Madhya Pradesh">Madhya Pradesh</option>
-        <option value="Maharashtra">Maharashtra</option>
-        <option value="Manipur">Manipur</option>
-        <option value="Meghalaya">Meghalaya</option>
-        <option value="Mizoram">Mizoram</option>
-        <option value="Nagaland">Nagaland</option>
-        <option value="Odisha">Odisha</option>
-        <option value="Punjab">Punjab</option>
-        <option value="Rajasthan">Rajasthan</option>
-        <option value="Sikkim">Sikkim</option>
-        <option value="Tamil Nadu">Tamil Nadu</option>
-        <option value="Telangana">Telangana</option>
-        <option value="Tripura">Tripura</option>
-        <option value="Uttar Pradesh">Uttar Pradesh</option>
-        <option value="Uttarakhand">Uttarakhand</option>
-        <option value="West Bengal">West Bengal</option>
-    </select>
-</div>
+                <label for="location">Location:</label>
+                <input type="text" name="location">
+            </div>
             <br>
             <div class="form-group">
     <input type="submit" name="submit" value="Add Delivery Boy" class="blue-button">
@@ -207,7 +154,5 @@ $conn->close();
 
         </form>
     </div>
-  
 </body>
 </html>
-
