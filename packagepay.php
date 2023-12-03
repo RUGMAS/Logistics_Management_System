@@ -250,104 +250,32 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
+                                                                                                                                                        
     <form>
-        <h2><i class="fas fa-user"></i> Package Details</h2><br>
+        <h2><i class="fas fa-user"></i> Payment Details</h2><br>
  <label for="itemType">
-    <i class="fas fa-box fa-icon"></i> Item Category:
+ <i class="fas fa-shopping-bag fa-icon"></i> Payment Category:
 </label>
-<select class="form-input" name="itemType" id="itemType">
-    <option value="" disabled selected>Select Item Category</option>
-    <option value="Dress">Dress</option>
-    <option value="Food">Food</option>
-    <option value="Electronics">Electronics</option>
-    <option value="Books">Books</option>
-    <option value="Home Decor">Home Decor</option>
-    <option value="Beauty">Beauty</option>
-    <!-- Add more categories as needed -->
+<select class="form-input" name="paymentType" id="paymentType">
+    <option value="" disabled selected>Select Payment Type</option>
+    <option value="Credit Card">Credit Card</option>
+    <option value="Debit Card">Debit Card</option>
+    <option value="Net Banking">Net Banking</option>
+    <option value="UPI">UPI</option>
+    <option value="Wallet">Wallet</option>
   </select>
     <br>
-    <!-- Package Count -->
-   <label for="packageCount">
-    <i class="fas fa-cubes fa-icon"></i> Package Count:
-  <input type="number" name="itemCount" id="itemCount" min="0" max="10" oninput="validateItemCount(this)" required>
-
-  <script>
-    function validateItemCount(input) {
-      var itemCount = parseInt(input.value);
-
-      // Check if the item count is more than 10
-      if (isNaN(itemCount) || itemCount > 10) {
-        input.setCustomValidity("You can only select up to 10 items.");
-      } else {
-        input.setCustomValidity("");
-      }
-    }
-  </script>
-    <br>
-
-    <!-- Weight -->
-    <label for="weight">
-    <i class="fas fa-balance-scale fa-icon"></i> Weight(kg):
-  </label>
-  <input type="text" name="weight" id="weightInput" required oninput="validateWeight(this)">
-
-  <script>
-    function validateWeight(input) {
-      // Remove non-numeric characters
-      input.value = input.value.replace(/[^0-9.]/g, '');
-
-      // Parse the input value as a float
-      var weight = parseFloat(input.value);
-
-      // Check if the weight is within the allowed range (0.10 gm to 10 kg)
-      if (isNaN(weight) || weight < 0.1) {
-        input.setCustomValidity("Weight must be at least 0.10 grams");
-      } else if (weight > 10000) {
-        input.setCustomValidity("Weight cannot exceed 10 kilograms");
-      } else {
-        input.setCustomValidity("");
-      }
-    }
-  </script>
-
-    <br>
-    <!-- Price -->
-    <script>
-  function validatePrice(input) {
-    // Remove non-numeric characters and keep decimal point
-    input.value = input.value.replace(/[^0-9.]/g, '');
-
-    // Parse the input value as a float
-    var price = parseFloat(input.value);
-
-    // Check if the price is within the allowed range (assuming a reasonable range for the example)
-    if (isNaN(price) || price < 0.1) {
-      input.setCustomValidity("Price must be at least $0.10");
-    } else if (price > 10000) {
-      input.setCustomValidity("Price cannot exceed $10,000");
-    } else {
-      input.setCustomValidity("");
-    }
-  }
-</script>
-
 <label for="price">
-  <i class="fas fa-rupee-sign fa-icon"></i> Price:
+<i class="fas fa-rupee-sign fa-icon"></i> Total Amount:
 </label>
 <input type="text" name="price" oninput="validatePrice(this)" required>
 <div class="container">
     <!-- Left Container -->
     <div class="left-container">
-    <a href="packagepay.php" class="login-button">
-        <i class="fas fa-chevron-right"></i> Next Page
+    <a href="php" class="login-button">
+        <i class="fas fa-chevron-right"></i> SUBMIT
     </a>
 </div>
-    <!-- Right Container -->
-    <div class="right-container">
-        <a href="placeorder.php" class="login-button">
-            <i class="fas fa-arrow-left"></i> Back
-        </a>
-    </div>
 </div>
 <br>
 </form>

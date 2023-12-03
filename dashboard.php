@@ -176,7 +176,7 @@ if (isset($_SESSION['email'])) {
     </ul>
     <br>
     <ul>
-        <li><i class="fas fa-file-invoice"></i> <a href="packageview.php">View Order Status</a></li>
+        <li><i class="fas fa-file-invoice"></i> <a href="#">View Order Status</a></li>
     </ul>
     <br>
     <ul>
@@ -201,13 +201,8 @@ if (isset($_SESSION['email'])) {
                     <li>Order #12347 - $60</li>
                 </ul>
             </div>
-            <div class="widget">
-                <h2>Notifications</h2>
-                <p>You have 2 new messages.</p>
-            </div>
-        </section>
     </main>
-    <br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <footer>
         <p>&copy; 2023 Logistics Management System</p>
     </footer>

@@ -195,7 +195,7 @@ if (isset($_SESSION['email'])) {
     </ul>
     <br>
     <ul>
-    <li><i class="fas fa-box"></i> <a href="warehouseview.php">List of Orders</a></li>
+    <li><i class="fas fa-box"></i> <a href="orderdetails.php">List of Orders</a></li>
     </ul>
     <br>
     <ul>
@@ -211,7 +211,7 @@ if (isset($_SESSION['email'])) {
     </ul>
     <br>
     <ul>
-        <li><i class="fas fa-chart-bar"></i> <a href="reports.php">Reports</a></li>
+        <li><i class="fas fa-chart-bar"></i> <a href="viewsubdeets.php">Reports</a></li>
     </ul>
 </section>
 <br><br><br>

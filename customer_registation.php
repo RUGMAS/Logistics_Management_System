@@ -8,7 +8,6 @@
     <title>Registration</title>
 </head>
 <body>
-    
 <?php
 require_once('connection.php');
 $successMessage = "";
@@ -43,7 +42,6 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>   
-
 <div class="registration-container">
     <div class="brand-text">  <h2 style="font-family: 'YourDesiredFont', Cooper Black;">CargoMasters</h2></div>
     <h2>Registration</h2>

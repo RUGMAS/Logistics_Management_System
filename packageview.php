@@ -332,7 +332,7 @@ footer {
         </table>
     </div>
     <div class="center-container">
-    <a href="dashboard.php" class="login-button">
+    <a href="admindashboard.php" class="login-button">
         <i class="fas fa-arrow-left"></i> Back
     </a>
 </div>
