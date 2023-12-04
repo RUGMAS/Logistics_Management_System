@@ -284,7 +284,7 @@ if (isset($_POST['submit'])) {
     <br>
     <br>
     <div class="center-container">
-    <a href="admindashboard.php" class="more-details-button">BACK</a>
+    <a href="orderdetails.php" class="more-details-button">BACK</a>
 </div>
 </body>
 </html>

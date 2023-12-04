@@ -266,7 +266,7 @@ if ($result === false) {
             <th>Phone Number</th>
             <th>Address</th>
             <th>State</th>
-            <th>Postal Code</th>
+            <th>Postal_Code</th>
                 </tr>
             </thead>
             <tbody>
