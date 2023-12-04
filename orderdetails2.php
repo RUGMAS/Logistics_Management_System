@@ -199,38 +199,28 @@ a {
         }
         
     </style>
-     <?php
-include('connection.php');
-
+    <?php
+require_once('connection.php');
 $successMessage = "";
 $errorMessage = "";
-$sql="SELECT
-    od.order_id,
-    od.name,
-    od.email,
-    od.contact,
-    od.address,
-    od.state,
-    od.postal_code,
-    pd.package_id,
-    pd.item_category,
-    pd.package_count,
-    pd.weight,
-    pd.price
-FROM 
-    orderdetail1 od
-LEFT JOIN 
-    packagedetail2 pd ON od.order_id = pd.order_id";
 
-$result = $conn->query($sql);
-$row = $result->fetch_assoc();
-echo $row['price'];
-// Check if the query was successful
-if ($result === false) {
-    die("Query failed: " . $conn->error);
+if (isset($_POST['submit'])) {
+    $item_category = $_POST["item_category"];
+    $package_count = $_POST["itemCount"];
+    $weight = $_POST["weight"];
+    $price = $_POST["price"];
+
+    // Assuming the actual column names in your database are 'item_category', 'package_count', 'weight', and 'price'
+    $insertSql = "INSERT INTO packagedetail2 (item_category, package_count, weight, price)
+                 VALUES ('$item_category', '$package_count', $weight, $price)";
+
+    if ($conn->query($insertSql) === TRUE) {
+        $successMessage = "New record created successfully in packagedetail2 table";
+    } else {
+        $errorMessage = "Error: " . $insertSql . "<br>" . $conn->error;
+    }
 }
 ?>
-
 
 </head>
 <body>
@@ -253,54 +243,41 @@ if ($result === false) {
             </div>
         </nav>
     </header>
-    <br>
-    <center><a href="assigndelboy.php" class="more-details-button">ADD DELIVERY BOY</a></center>
-    <br>
+
     <div class="container">
-        <h1>Order Details</h1>
+        <h1>Package Details</h1>
         <table>
             <thead>
                 <tr>
-                <th>Name</th>
-            <th>Email</th>
-            <th>Phone Number</th>
-            <th>Address</th>
-            <th>State</th>
-            <th>Postal Code</th>
+                <th>Item Category</th>
+            <th>Package Count</th>
+            <th>Weight</th>
+            <th>Price</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Add customer data rows here -->
-                <?php
-                    // Loop through the result set
-                    if ($result->num_rows > 0) {
+
+            <?php
+                    $sql = "SELECT * FROM `packagedetail2` ";
+                    $result = $conn->query($sql);
+
+                    // Check if the query was successful
+                    if ($result === false) {
+                        die("Query failed: " . $conn->error);
+                    }
                     while ($row = $result->fetch_assoc()) {
-                        
                 ?>
                 <tr>
-                <tr>
-            <td><?php echo $row["name"]?></td>
-            <td><?php echo $row["email"]?></td>
-            <td><?php echo $row["contact"]?></td>
-            <td><?php echo $row["address"]?></td>
-            <td><?php echo $row["state"]?></td>
-            <td><?php echo $row["postal_code"]?></td>
-            <td><?php echo $row["item_category"]?></td>
+                <td><?php echo $row["item_category"]?></td>
             <td><?php echo $row["package_count"]?></td>
             <td><?php echo $row["weight"]?></td>
             <td><?php echo $row["price"]?></td>
-        
-           
-        </tr>
                 </tr>
-                <!-- Add more customer data rows as needed -->
+                
                 <?Php
-                        }
-                    } else {
-                        // Handle the case where no rows are returned
-                        echo "No rows found";
                     }
-                ?>  
+                ?>
+               
             </tbody>
         </table>
     </div>
@@ -308,8 +285,6 @@ if ($result === false) {
     <br>
     <div class="center-container">
     <a href="admindashboard.php" class="more-details-button">BACK</a>
-    <a href="orderdetails2.php" class="more-details-button">More Details</a>
-   
 </div>
 </body>
 </html>

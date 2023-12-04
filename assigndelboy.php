@@ -84,26 +84,21 @@
     </style>
 </head>
 <?php
-include('connection.php'); // Include your database connection code
+include('connection.php'); 
 
 if (isset($_POST['submit'])) {
-    // Define variables to store form data
     $full_name = $license_number = $location = "";
 
-    // Validate and retrieve data from the form
     if (isset($_POST['full_name'])) {
         $full_name = $_POST['full_name'];
     }
+    
     if (isset($_POST['license_number'])) {
         $license_number = $_POST['license_number'];
     }
     if (isset($_POST['location'])) {
         $location = $_POST['location'];
     }
-
-    // Perform any additional data validation if needed
-
-    // Insert data into the "delivery_boy" table
     $sql = "INSERT INTO delivery_boy (full_name, license_number, location) VALUES (?, ?, ?)";
 
     if ($stmt = $conn->prepare($sql)) {
@@ -118,11 +113,9 @@ if (isset($_POST['submit'])) {
         $stmt->close();
     }
 }
-
-// Close the database connection
 $conn->close();
 ?>
-
+  
 <!DOCTYPE html>
 <html>
 <head>
@@ -131,7 +124,7 @@ $conn->close();
 <body>
 <div class="container">
         <h1>Add Delivery Boy</h1>
-        
+                                                                                                                                                                                                                                     
         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
             <div class="form-group">
                 <label for="full_name">Full Name:</label>
@@ -149,7 +142,7 @@ $conn->close();
             </div>
             <br>
             <div class="form-group">
-    <input type="submit" name="submit" value="Add Delivery Boy" class="blue-button">
+    <input type="submit" name="submit" value="NEXT" class="blue-button">
 </div>
 
         </form>

@@ -185,6 +185,38 @@ a {
             }
          }
   </style>
+  <?php
+include('connection.php');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $payment_category = $total_amount = "";
+
+    // Validate and sanitize input
+    if (isset($_POST['payment_category'])) {
+        $payment_category = htmlspecialchars($_POST['payment_category']);
+    }
+    if (isset($_POST['total_amount'])) {
+        $total_amount = htmlspecialchars($_POST['total_amount']);
+    }
+
+    // Prepare and execute the SQL query
+    $sql = "INSERT INTO paymentdetail (payment_category, total_amount) VALUES (?, ?)";
+
+    if ($stmt = $conn->prepare($sql)) {
+        $stmt->bind_param("ss", $payment_category, $total_amount);
+
+        if ($stmt->execute()) {
+            echo "Payment details added successfully.";
+        } else {
+            echo "Error adding payment details: " . $stmt->error;
+        }
+
+        $stmt->close();
+    }
+}
+
+$conn->close();
+?>
   <script>
     function showBranchInput() {
       var deliveryType = document.getElementById('deliveryType');
@@ -220,37 +252,7 @@ a {
     </div>
 </nav>
     </header>
-    <?php
-require_once('connection.php');
-$successMessage = "";
-$errorMessage = "";
-
-if (isset($_POST['submit'])) {
-    // Retrieve form data
-    $name = $_POST["Name"];
-    $address = $_POST["Address"];
-    $state = $_POST["State"];
-    $email = $_POST["Email"];
-    $contact = $_POST["Phone"];
-    $postalCode = $_POST["PostalCode"];
-    $itemCategory = $_POST["ItemCategory"];
-    $packageCount = $_POST["PackageCount"];
-    $weight = $_POST["Weight"];
-    $price = $_POST["Price"];
-    $paymentCategory = $_POST["PaymentCategory"];
-    $totalAmount = $_POST["TotalAmount"];
-
-    $sql = "INSERT INTO OrderDetails (name, address, state, email, contact, postal_code, item_category, package_count, weight, price, payment_category, total_amount)
-            VALUES ('$name', '$address', '$state', '$email', '$contact', '$postalCode', '$itemCategory', '$packageCount', '$weight', '$price', '$paymentCategory', '$totalAmount')";
-
-    if ($conn->query($insertSql) === TRUE) {
-        $successMessage = "New record created successfully in OrderDetails table";
-    } else {
-        $errorMessage = "Error: " . $insertSql . "<br>" . $conn->error;
-    }
-}
-?>
-                                                                                                                                                        
+                                                                                                                                                
     <form>
         <h2><i class="fas fa-user"></i> Payment Details</h2><br>
  <label for="itemType">

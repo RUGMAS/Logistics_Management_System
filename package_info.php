@@ -185,6 +185,46 @@ a {
             }
          }
   </style>
+<?php
+include('connection.php');
+
+$successMessage = "";
+$errorMessage = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $item_category = $package_count = $weight = $price = "";
+
+    // Use $_POST directly instead of isset($_POST['...']) ? ... : ''
+    $item_category = htmlspecialchars($_POST['item_category'] ?? '');
+    $package_count = htmlspecialchars($_POST['itemCount'] ?? '');
+    $weight = htmlspecialchars($_POST['weight'] ?? '');
+    $price = htmlspecialchars($_POST['price'] ?? '');
+
+    // Validate input (add more validation if needed)
+    if (empty($item_category) || empty($package_count) || empty($weight) || empty($price)) {
+        echo "All fields are required.";
+    } else {
+        // Insert into the packagedetail2 table
+        $sql = "INSERT INTO packagedetail2 (item_category, package_count, weight, price) VALUES (?, ?, ?, ?)";
+
+        if ($stmt = $conn->prepare($sql)) {
+            // Adjust the format specifier based on the data types
+            $stmt->bind_param("sssd", $item_category, $package_count, $weight, $price);
+
+            if ($stmt->execute()) {
+                echo "Package details added successfully.";
+            } else {
+                echo "Error adding package details: " . $stmt->error;
+            }
+            $stmt->close();
+        } else {
+            echo "Error preparing statement: " . $conn->error;
+        }
+    }
+    $conn->close();
+}
+?>
+
   <script>
     function showBranchInput() {
       var deliveryType = document.getElementById('deliveryType');
@@ -220,134 +260,50 @@ a {
     </div>
 </nav>
     </header>
-    <?php
-require_once('connection.php');
-$successMessage = "";
-$errorMessage = "";
+  
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    <h2><i class="fas fa-user"></i> Package Details</h2><br>
 
-if (isset($_POST['submit'])) {
-    // Retrieve form data
-    $name = $_POST["Name"];
-    $address = $_POST["Address"];
-    $state = $_POST["State"];
-    $email = $_POST["Email"];
-    $contact = $_POST["Phone"];
-    $postalCode = $_POST["PostalCode"];
-    $itemCategory = $_POST["ItemCategory"];
-    $packageCount = $_POST["PackageCount"];
-    $weight = $_POST["Weight"];
-    $price = $_POST["Price"];
-    $paymentCategory = $_POST["PaymentCategory"];
-    $totalAmount = $_POST["TotalAmount"];
-
-    $sql = "INSERT INTO OrderDetails (name, address, state, email, contact, postal_code, item_category, package_count, weight, price, payment_category, total_amount)
-            VALUES ('$name', '$address', '$state', '$email', '$contact', '$postalCode', '$itemCategory', '$packageCount', '$weight', '$price', '$paymentCategory', '$totalAmount')";
-
-    if ($conn->query($insertSql) === TRUE) {
-        $successMessage = "New record created successfully in OrderDetails table";
-    } else {
-        $errorMessage = "Error: " . $insertSql . "<br>" . $conn->error;
-    }
-}
-?>
-    <form>
-        <h2><i class="fas fa-user"></i> Package Details</h2><br>
- <label for="itemType">
-    <i class="fas fa-box fa-icon"></i> Item Category:
-</label>
-<select class="form-input" name="itemType" id="itemType">
-    <option value="" disabled selected>Select Item Category</option>
-    <option value="Dress">Dress</option>
-    <option value="Food">Food</option>
-    <option value="Electronics">Electronics</option>
-    <option value="Books">Books</option>
-    <option value="Home Decor">Home Decor</option>
-    <option value="Beauty">Beauty</option>
-    <!-- Add more categories as needed -->
-  </select>
-    <br>
-    <!-- Package Count -->
-   <label for="packageCount">
-    <i class="fas fa-cubes fa-icon"></i> Package Count:
-  <input type="number" name="itemCount" id="itemCount" min="0" max="10" oninput="validateItemCount(this)" required>
-
-  <script>
-    function validateItemCount(input) {
-      var itemCount = parseInt(input.value);
-
-      // Check if the item count is more than 10
-      if (isNaN(itemCount) || itemCount > 10) {
-        input.setCustomValidity("You can only select up to 10 items.");
-      } else {
-        input.setCustomValidity("");
-      }
-    }
-  </script>
+    <label for="itemType">
+        <i class="fas fa-box fa-icon"></i> Item Category:
+    </label>
+    <select class="form-input" name="item_category" id="item_categor" required>
+        <option value="" disabled selected>Select Item Category</option>
+        
+        <option value="Dress">Dress</option>
+        <option value="Food">Food</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Books">Books</option>
+        <option value="Home Decor">Home Decor</option>
+        <option value="Beauty">Beauty</option>
+    </select>
     <br>
 
-    <!-- Weight -->
+    <label for="packageCount">
+        <i class="fas fa-cubes fa-icon"></i> Package Count:
+        <input type="number" name="itemCount" id="itemCount" min="0" max="10" oninput="validateItemCount(this)" required>
+    </label>
+  
     <label for="weight">
-    <i class="fas fa-balance-scale fa-icon"></i> Weight(kg):
-  </label>
-  <input type="text" name="weight" id="weightInput" required oninput="validateWeight(this)">
-
-  <script>
-    function validateWeight(input) {
-      // Remove non-numeric characters
-      input.value = input.value.replace(/[^0-9.]/g, '');
-
-      // Parse the input value as a float
-      var weight = parseFloat(input.value);
-
-      // Check if the weight is within the allowed range (0.10 gm to 10 kg)
-      if (isNaN(weight) || weight < 0.1) {
-        input.setCustomValidity("Weight must be at least 0.10 grams");
-      } else if (weight > 10000) {
-        input.setCustomValidity("Weight cannot exceed 10 kilograms");
-      } else {
-        input.setCustomValidity("");
-      }
-    }
-  </script>
-
+        <i class="fas fa-balance-scale fa-icon"></i> Weight(kg):
+    </label>
+    <input type="text" name="weight" id="weightInput" oninput="validateWeight(this)" required>
     <br>
-    <!-- Price -->
-    <script>
-  function validatePrice(input) {
-    // Remove non-numeric characters and keep decimal point
-    input.value = input.value.replace(/[^0-9.]/g, '');
 
-    // Parse the input value as a float
-    var price = parseFloat(input.value);
+    <label for="price">
+        <i class="fas fa-rupee-sign fa-icon"></i> Total Amount:
+    </label>
+    <input type="text" name="price" oninput="validatePrice(this)" required>
+    <br>
 
-    // Check if the price is within the allowed range (assuming a reasonable range for the example)
-    if (isNaN(price) || price < 0.1) {
-      input.setCustomValidity("Price must be at least $0.10");
-    } else if (price > 10000) {
-      input.setCustomValidity("Price cannot exceed $10,000");
-    } else {
-      input.setCustomValidity("");
-    }
-  }
-</script>
+    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
 
-<label for="price">
-  <i class="fas fa-rupee-sign fa-icon"></i> Price:
-</label>
-<input type="text" name="price" oninput="validatePrice(this)" required>
-<div class="container">
-    <!-- Left Container -->
-    <div class="left-container">
-    <a href="packagepay.php" class="login-button">
-        <i class="fas fa-chevron-right"></i> Next Page
-    </a>
-</div>
-    <!-- Right Container -->
     <div class="right-container">
-        <a href="placeorder.php" class="login-button">
-            <i class="fas fa-arrow-left"></i> Back
+        <a href="dashboard.php" class="login-button">
+            <i class="fas fa-arrow-left"></i> BACK
         </a>
     </div>
+    <br>
 </div>
 <br>
 </form>
