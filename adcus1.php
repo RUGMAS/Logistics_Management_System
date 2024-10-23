@@ -99,7 +99,7 @@ a {
 }
 
 .login-button {
-  /* Add any other styles you want for your button here */
+  /* Add styles you want for your button here */
 }
         .container {
             max-width: 1200px;
